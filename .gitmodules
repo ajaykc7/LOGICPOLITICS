@@ -1,0 +1,3 @@
+[submodule "logical-fallacy"]
+	path = logical-fallacy
+	url = https://github.com/causalNLP/logical-fallacy.git
