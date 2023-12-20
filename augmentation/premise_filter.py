@@ -161,10 +161,12 @@ def prediction_stats(all_sources, all_preds, all_labels):
     stat = []
     logicpolitics = []
     invalid = []
-    count = 0
     for pair, pred, label in zip(all_sources, all_preds, all_labels):
         fallacies = []
         premise = pair[0][0]
+        premise = premise.replace("“", "")
+        premise = premise.replace("”", "")
+        premise = premise.replace("’", "")
         for p in pair:
             if "emotion" in p[1]:
                 fallacies.append("E")
@@ -177,9 +179,8 @@ def prediction_stats(all_sources, all_preds, all_labels):
         assert fallacies == ["E", "D", "R", "I"]
         original_label = fallacies[label.index(1)]
         stat.append([premise, original_label, *pred])
-        if 1 not in pred or "# " in pair[0][0] or "[" in pair[0][0]\
-            or "fallacy" in pair[0][0] or "false dilemma" in pair[0][0]\
-            or "appeal to emotion" in pair[0][0]:
+        cut_down = ["# ", "[", "(", "fallacy", "false dilemma", "appeal to emotion"]
+        if 1 not in pred or any([c in pair[0][0] for c in cut_down]):
             invalid.append([premise, original_label, *pred])
             continue
         if premise not in [p[0] for p in logicpolitics]:
@@ -236,7 +237,7 @@ def generate_logicpolitics_raw(df_names):
         frame.append(pd.DataFrame({"source_article": dfs[i].tolist(), "updated_label": [FALLACY_HASH[i]] * len(dfs[i])}))
 
     df = pd.concat(frame, ignore_index=True)
-    df.to_csv("Data/premises/logicpolitics_raw.csv", index=False)
+    df.to_csv("../Data/premises/logicpolitics_raw.csv", index=False)
     return df
 
 if __name__ == "__main__":
@@ -279,7 +280,7 @@ if __name__ == "__main__":
     # prediction stats
     df, df_lp, df_invalid = prediction_stats(all_sources, all_preds, all_labels)
     
-    df.to_csv("Data/premises/logicpolitics_stat.csv", index=False)
-    df_lp.to_csv("Data/premises/logicpolitics_filtered.csv", index=False)
-    df_invalid.to_csv("Data/premises/logicpolitics_invalid.csv", index=False)
+    df.to_csv("../Data/premises/logicpolitics_stat.csv", index=False)
+    df_lp.to_csv("../Data/premises/logicpolitics_filtered.csv", index=False)
+    df_invalid.to_csv("../Data/premises/logicpolitics_invalid.csv", index=False)
     
