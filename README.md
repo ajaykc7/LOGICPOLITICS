@@ -1,4 +1,4 @@
-This project is an enhancement to the task of logical fallacy detection by offering a richer benchmark dataset named [**LOGICPOLITICS**](Data\Premises\logicpolitics_filtered.csv), as an extension to **LOGIC** and **LOGICCLIMATE** datasets from the [Logical Fallacy Detection paper](https://arxiv.org/abs/2202.13758). The dataset is created by using a pipeline for mining fallacies from raw political speeches, leveraging the power of Large Language Models in dataset augmentation.
+This project is an enhancement to the task of logical fallacy detection by offering a richer benchmark dataset named [**LOGICPOLITICS**](Data/Premises/logicpolitics_filtered.csv), as an extension to **LOGIC** and **LOGICCLIMATE** datasets from the [Logical Fallacy Detection paper](https://arxiv.org/abs/2202.13758). The dataset is created by using a pipeline for mining fallacies from raw political speeches, leveraging the power of Large Language Models in dataset augmentation.
 
 ![LOGICPOLITICS](figures/logicpolitics-pipeline.png)
 
