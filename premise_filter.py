@@ -240,7 +240,7 @@ def generate_logicpolitics_raw(df_names):
     return df
 
 if __name__ == "__main__":
-    logicpolitics_raw = generate_logicpolitics_raw(["premises1", "premises2", "premises3"])
+    logicpolitics_raw = generate_logicpolitics_raw(["premises1", "premises2", "premises3", "premises4", "premises5"])
 
     if torch.cuda.is_available():
         device = "cuda"
